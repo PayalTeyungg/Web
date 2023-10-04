@@ -15,36 +15,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path,include
 from app1 import views
-from app1.views import *
-
-admin.site.site_header = 'Pet Care'
-admin.site.site_title = 'Pet Care'
-
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.Homepage,name='home'),
+   
     path('register/',views.Registerpage,name='register'),
     path('login/',views.LoginPage,name='login'),
     path('logout/',views.LogoutPage,name='logout'),
+    path('petcare/',include('app1.urls')),
     # path('dashboard/',views.Dashboard,name='dashboard'),
-    path('services/',views.servicepage,name='services'),
-    path('about/',views.about,name='about'),
-    path('contact/',views.contact,name='contact'),
-    path("book/",views.book,name='book'),
-    path("food/",views.food,name="food"),
-    path("insurance/",views.insurance,name="insurance"),
-    path("hostel/",views.hostel,name="hostel"),
-    path("booking/",views.booking,name='booking'),
-    path('<int:plan_id>/purchase/', views.purchase_insurance, name='purchase_insurance'),
-    path('purchase/success/', views.purchase_success, name='insurance_purchase_success'),
+    path("about",views.About,name='about'),
+    path('services/',views.ServiceView.as_view(),name='service'),
+    path("insurance",views.Insurance,name='insurance'),
+    path("hostel",views.Hostel,name='hostel'),
+    path("food",views.Food,name='food'),
+    path("calculator",views.Calculator,name='calculator'),
+    path("landing",views.Landing,name='landing'),
+  
     
-    
-    
+
+
 ]
-
-
 
